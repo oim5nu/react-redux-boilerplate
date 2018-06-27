@@ -1,9 +1,9 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Header from '../../components/Header';
-import Navigation from '../../components/Navigation';
-import Footer from '../../components/Footer';
+import Header from '../components/Header';
+import Navigation from '../components/Navigation';
+import Footer from '../components/Footer';
 import Routes from './routes';
 import './style.scss';
 

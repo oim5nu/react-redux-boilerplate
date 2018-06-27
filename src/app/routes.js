@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import NotFoundPage from '../NotFoundPage';
-import HomePage from '../HomePage';
+import NotFoundPage from '../views/NotFoundPage';
+import HomePage from '../views/HomePage';
 
 /**
  *  Defines components to routes mapping

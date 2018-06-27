@@ -18,7 +18,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import configureStore, { history } from './store/configureStore';
-import Root from './containers/Root';
+import { Root } from './app';
 import FontFaceObserver from 'fontfaceobserver';
 import 'tachyons';
 
@@ -61,7 +61,7 @@ if (module.hot) {
   // Hot reloadable React components and translation json files
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
-  module.hot.accept(['./containers/Root'], () => {
+  module.hot.accept(['./app/root'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render();
   });
