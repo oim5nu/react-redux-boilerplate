@@ -1,7 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Header = () => (
-  <div>Header</div>
+const Header = ({children, className}) => (
+  <div className={className}>{children}</div>
 );
+
+Header.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
+  className: PropTypes.object
+};
 
 export default Header;
