@@ -18,7 +18,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import configureStore, { history } from './store/configureStore';
+import rootSaga from './sagas';
 import { Root } from './app';
+//import { initialState } from './reducers';
 import FontFaceObserver from 'fontfaceobserver';
 import 'tachyons';
 
@@ -44,6 +46,7 @@ openSansObserver.load().then(() =>{
 // Create redux store with history
 const initialState = {};
 const store = configureStore(initialState, history);
+store.runSaga(rootSaga);
 const MOUNT_NODE = document.getElementById('app');
 
 const render = () => {

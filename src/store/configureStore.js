@@ -1,16 +1,17 @@
-import { fromJS } from 'immutable';
 import {createStore, compose, applyMiddleware} from 'redux';
+import { fromJS } from 'immutable';
+import { createLogger } from 'redux-logger';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import createSagaMiddleware from 'redux-saga';
+import createSagaMiddleware, { END } from 'redux-saga';
 import createHistory from 'history/createBrowserHistory';
 // 'routerMiddleware': the new way of storing route changes with redux middleware since rrV4.
 import { routerMiddleware } from 'react-router-redux';
-import createReducer from '../reducers';
+import rootReducer from '../reducers';
 export const history = createHistory();
 
 const sagaMiddleware = createSagaMiddleware();
 
-function configureStoreProd(initialState) {
+function configureStoreProd(initialState) { 
   const reactRouterMiddleware = routerMiddleware(history);
   const middlewares = [
     // Add other middleware on this line...
@@ -20,20 +21,18 @@ function configureStoreProd(initialState) {
   ];
 
   const store = createStore(
-    createReducer(),
+    rootReducer,
     fromJS(initialState),
     compose(applyMiddleware(...middlewares))
   );
 
-  // Extensions
   store.runSaga = sagaMiddleware.run;
-  store.injectedReducers = {}; // Reducer registry
-  store.injectedSagas = {}; // Saga registry
+  store.close = () => store.dispatch(END);
 
   return store;
 }
 
-function configureStoreDev(initialState) {
+function configureStoreDev(initialState) { 
   const reactRouterMiddleware = routerMiddleware(history);
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [
@@ -44,22 +43,21 @@ function configureStoreDev(initialState) {
 
     sagaMiddleware,
     reactRouterMiddleware,
+    createLogger(),
   ];
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
 
   const store = createStore(
-    createReducer(), 
+    rootReducer, 
     fromJS(initialState), 
     composeEnhancers(
       applyMiddleware(...middlewares)
     )
   );
 
-  // Extensions
   store.runSaga = sagaMiddleware.run;
-  store.injectedReducers = {}; // Reducer registry
-  store.injectedSagas = {}; // Saga registry  
+  store.close = () => store.dispatch(END);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

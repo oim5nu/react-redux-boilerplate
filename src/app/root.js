@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
-import App from './app';
+import App from './App';
 
 export default class Root extends React.Component {
   render() {

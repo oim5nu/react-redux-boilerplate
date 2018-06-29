@@ -8,4 +8,9 @@ https://github.com/coryhouse/react-slingshot
 
 #Feature/Note
 - Features based folder structure
-- Packages: Redux-Saga, Axios, React-Router-Redux@5, tachyons  
+- Packages: Redux-Saga, Axios, React-Router-Redux@5, tachyons 
+- Demo: Simple counter example involved
+
+#TODO
+- ADD more complex CRUD demo redux-saga
+- ADD selectors to enquiry global state

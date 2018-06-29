@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import NotFoundPage from '../views/NotFoundPage';
-import HomePage from '../views/HomePage';
+import NotFoundPage from '../containers/NotFoundPage';
+import HomePage from '../containers/HomePage';
+import DemoPage from '../containers/DemoPage';
 
 /**
  *  Defines components to routes mapping
@@ -18,6 +19,7 @@ import HomePage from '../views/HomePage';
 const Routes = () => (
   <Switch>
     <Route exact path='/' component={HomePage} />
+    <Route path='/demo' component={DemoPage} />
     <Route path='*' component={NotFoundPage} />
   </Switch>  
 );

@@ -1,10 +1,9 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { BrowserRouter as Router } from 'react-router-dom';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
-import Routes from './routes';
+import Routes from './Routes';
 import './style.scss';
 
 const App = () => (
@@ -18,9 +17,7 @@ const App = () => (
     <Header >
       <Navigation />
     </Header>
-    <Router>
-      <Routes />
-    </Router>
+    <Routes />
     <Footer />
   </div>
 );

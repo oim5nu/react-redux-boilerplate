@@ -1,44 +1,15 @@
 // Set up your root reducer here...
-
-import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
-import { LOCATION_CHANGE } from 'react-router-redux';
+//import globalReducer from '../app/reducer';
+//import homeReducer from '../views/HomePage/reducer';
+import routeReducer from './routeReducer';
+import demoReducer from '../containers/DemoPage/reducer';
 
-//import homeReducer from '../container/HomePage/reducer';
-/**
- *  routeReducer
- *  The reducer merges route location changes into our immutable state.
- *  The change is necessitated by moving to react-router-redux@5
- */
+const rootReducer = combineReducers({
+  route: routeReducer,
+  //global: globalReducer,
+  demo: demoReducer,
+});
 
- // Inital routing state
- const routeInitialState = fromJS({
-   location: null
- });
-
- /**
-  *  Merge route into the global application state
-  */
-
-function routeReducer(state = routeInitialState, action) {
-  switch (action.type) {
-    /* istanbul ignore next */
-    case LOCATION_CHANGE:
-      return state.merge({
-        location: action.payload,
-      });
-    default:
-      return state;
-  }
-}
-
-/**
- *  Creates the main reducer with the dynamically injected ones
- */
-export default function createReducer(injectedReducers) {
-  return combineReducers({
-    route: routeReducer,
-    //home: homeReducer,
-    ...injectedReducers
-  });
-}
+export { default as initialState } from './initialState';
+export default rootReducer;
