@@ -3,6 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import NotFoundPage from '../containers/NotFoundPage';
 import HomePage from '../containers/HomePage';
 import DemoPage from '../containers/DemoPage';
+import ToDoPage from '../containers/TaskPage';
+import * as routes from '../constants/routes';
 
 /**
  *  Defines components to routes mapping
@@ -18,9 +20,10 @@ import DemoPage from '../containers/DemoPage';
 
 const Routes = () => (
   <Switch>
-    <Route exact path='/' component={HomePage} />
-    <Route path='/demo' component={DemoPage} />
-    <Route path='*' component={NotFoundPage} />
+    <Route exact path={routes.HOME} component={HomePage} />
+    <Route path={routes.TODO} component={ToDoPage} />
+    <Route path={routes.DEMO} component={DemoPage} />
+    <Route path={routes.NOTFOUND} component={NotFoundPage} />
   </Switch>  
 );
 

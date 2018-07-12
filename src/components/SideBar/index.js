@@ -76,6 +76,6 @@ const SideBar = ({className}) => (
 );
 
 SideBar.propTypes = {
-  className: PropTypes.object
+  className: PropTypes.string
 };
 export default SideBar;

@@ -5,4 +5,5 @@
 export default {
   route: null,
   demo: null, // used for demo
+  todo: null,
 };

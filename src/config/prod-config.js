@@ -1,5 +1,5 @@
 const prodConfig = {
-  baseApiUrl: 'localhost:8080'
+  baseApiUrl: 'http://localhost:8080'
 };
 
 export default prodConfig;

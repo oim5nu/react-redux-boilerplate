@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Counter from '../../components/Counter';
 
-const Demo = ({value, actions}) => 
+const DemoPage = ({value, actions}) => 
   <Counter 
     value={value}
     onIncrement={() => actions.increment() }
@@ -26,9 +26,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-Demo.propTypes = {
+DemoPage.propTypes = {
   value: PropTypes.number,
   actions: PropTypes.object
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Demo));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DemoPage));

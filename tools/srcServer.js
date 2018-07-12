@@ -10,6 +10,13 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../webpack.config.dev';
+import proxy from 'http-proxy-middleware';
+
+const serverProxy = proxy('/api', {
+  target: "http://localhost:8080",
+  changeOrigin: false, // set true for hosted sites
+  logLevel: 'debug'
+});
 
 const bundler = webpack(config);
 
@@ -47,7 +54,8 @@ browserSync({
       }),
 
       // bundler should be the same as above
-      webpackHotMiddleware(bundler)
+      webpackHotMiddleware(bundler),
+      serverProxy,
     ]
   },
 

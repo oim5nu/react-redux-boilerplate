@@ -12,8 +12,8 @@ Input.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ]).isRequired,
-  className: PropTypes.object
+  ]),
+  className: PropTypes.string
 };
 
 export default Input;
