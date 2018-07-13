@@ -9,6 +9,7 @@ export const initialTaskState = fromJS({
 });
 
 function taskReducer(state = initialTaskState, {payload, type} ) {
+  console.info('reducer type', type);
   switch (type) {
     case taskActions.LOAD_TASK_FULFILLED:
       return state
@@ -20,7 +21,12 @@ function taskReducer(state = initialTaskState, {payload, type} ) {
             .set('loading', true)
             .set('error', false);
     case taskActions.CREATE_TASK_FULFILLED:
-      return state.set('tasks', state.get('tasks').push(fromJS(payload.task)));
+      return state
+        .set('tasks', state
+                      .get('tasks')
+                      .push(fromJS(payload.task)
+        )
+      );
     
   }
   return state;

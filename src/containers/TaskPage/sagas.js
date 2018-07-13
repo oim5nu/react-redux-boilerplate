@@ -5,18 +5,18 @@ import { call, put, fork, takeLatest } from 'redux-saga/effects';
 
 
 function* workerCreateTask(action) {
-  console.log('action in worker', action);
-  const { title } = action.payload;
+  const { task } = action.payload;
+  console.log('task in worker', task);  
 
   try {
-    const task = yield call(
+    const taskCreated = yield call(
       api.post,
       '/api/tasks',
-      {
-        body: JSON.stringify({title})
-      }
+      // axios only need to pass object straightaway rather than { body: ... } with fetch
+      {title: task.title} 
     );
-    const {id, title} = task;
+    console.log('taskCreated', taskCreated);
+    const {id, title} = taskCreated;
 
     yield put({ type: taskActions.CREATE_TASK_FULFILLED, payload: { id, title }});
   } catch(error) {
@@ -25,7 +25,6 @@ function* workerCreateTask(action) {
 }
 
 function* watcherCreateTask() {
-  console.log('Start task saga');
   yield takeLatest(taskActions.CREATE_TASK, workerCreateTask);
 }
 
