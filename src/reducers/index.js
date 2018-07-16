@@ -11,8 +11,8 @@ import taskReducer from '../containers/TaskPage/reducer';
 const rootReducer = combineReducers({
   route: routeReducer,
   global: globalReducer,
-  demo: demoReducer,
-  tasks: taskReducer,
+  demoReducer,
+  taskReducer,
 });
 
 export { default as initialState } from './initialState';

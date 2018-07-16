@@ -1,7 +1,7 @@
 export const HOME ="/";
 export const PROFILE = '/profile';
 export const DEMO = '/demo';
-export const TODO = '/doto';
+export const TODO = '/todo';
 export const ABOUT = '/about';
 export const LOGIN = '/login';
 export const REGISTER = '/register';

@@ -10,14 +10,16 @@ import { compose, bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 
 
-const TaskPage = ({createTask}) => (
-  <div>
-    TaskPage
-    <TaskForm handleSubmit={createTask}/>
-    <TaskFilter />
-    <TaskList />
-  </div>
-);
+const TaskPage = ({createTask, tasks}) => {
+  console.log('tasks.toJS()', tasks.toJS());
+  return(
+    <div>
+      TaskPage
+      <TaskForm handleSubmit={createTask}/>
+      <TaskFilter />
+      <TaskList tasks={tasks} />
+    </div>);
+};
 
 TaskPage.propTypes = {
   tasks: PropTypes.instanceOf(List),

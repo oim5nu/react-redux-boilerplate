@@ -5,7 +5,7 @@ export const initialTaskState = fromJS({
   filter: '',
   loading: false,
   error: false,
-  tasks: []
+  list: []
 });
 
 function taskReducer(state = initialTaskState, {payload, type} ) {
@@ -15,19 +15,23 @@ function taskReducer(state = initialTaskState, {payload, type} ) {
       return state
             .set('loading', false)
             .set('error', false)
-            .set('tasks', fromJS(payload.tasks));
+            .set('list', fromJS(payload.tasks));
     case taskActions.CREATE_TASK:
       return state
             .set('loading', true)
             .set('error', false);
-    case taskActions.CREATE_TASK_FULFILLED:
-      return state
-        .set('tasks', state
-                      .get('tasks')
-                      .push(fromJS(payload.task)
-        )
-      );
-    
+    case taskActions.CREATE_TASK_FULFILLED: {
+      console.log('payload', payload);
+      const newState = state.set('list', state.get('list').push(fromJS(payload.task)));
+      console.log('newState', newState);
+      return newState;
+      // return state
+      //   .set('list', state
+      //                 .get('list')
+      //                 .push(fromJS(payload.task)
+      //   )
+      // );
+    }
   }
   return state;
 }

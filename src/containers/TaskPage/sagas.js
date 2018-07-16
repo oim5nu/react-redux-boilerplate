@@ -16,9 +16,9 @@ function* workerCreateTask(action) {
       {title: task.title} 
     );
     console.log('taskCreated', taskCreated);
-    const {id, title} = taskCreated;
+    const {id, title} = taskCreated.data;
 
-    yield put({ type: taskActions.CREATE_TASK_FULFILLED, payload: { id, title }});
+    yield put({ type: taskActions.CREATE_TASK_FULFILLED, payload: { task: { id, title } } });
   } catch(error) {
     yield put({ type: taskActions.CREATE_TASK_FAILED , payload: { error } })
   }
