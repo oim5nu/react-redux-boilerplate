@@ -6,12 +6,11 @@ import TaskFilter from './TaskFilter';
 import TaskList from './TaskList';
 import { taskActions, getVisibleTasks } from './index';
 import { connect } from 'react-redux';
-import { compose, bindActionCreators } from 'redux';
+import { compose, /*bindActionCreators*/ } from 'redux';
 import { withRouter } from 'react-router-dom';
 
 
 const TaskPage = ({createTask, tasks}) => {
-  console.log('tasks.toJS()', tasks.toJS());
   return(
     <div>
       TaskPage

@@ -1,8 +1,11 @@
-import api from '../../utils/network';
-import { taskActions } from './actions';
+import api from '../../../utils/network';
+import { taskActions } from '../actions';
 
-import { call, put, fork, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
+//==================================================
+// Create
+//--------------------------------------------------
 export function* createTaskSaga(action) {
   const { task } = action.payload;
 
@@ -21,10 +24,10 @@ export function* createTaskSaga(action) {
   }
 }
 
-export function* watchCreateTaskSaga() {
+export default function* watchCreateTaskSaga() {
   yield takeLatest(taskActions.CREATE_TASK, createTaskSaga);
 }
 
-export const taskSagas = [
-  fork(watchCreateTaskSaga)
-];
+
+
+

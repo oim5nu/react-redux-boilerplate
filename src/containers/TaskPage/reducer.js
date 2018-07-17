@@ -9,12 +9,13 @@ export const initialTaskState = fromJS({
 });
 
 function taskReducer(state = initialTaskState, {payload, type} ) {
+  //console.info('payload.tasks', payload.tasks !== undefined ? payload.tasks : null);
   switch (type) {
-    case taskActions.LOAD_TASK_FULFILLED:
+    case taskActions.LOAD_TASKS_FULFILLED: 
       return state
-            .set('loading', false)
-            .set('error', false)
-            .set('list', fromJS(payload.tasks));
+        .set('loading', false)
+        .set('error', false)
+        .set('list', fromJS(payload.tasks));
     case taskActions.CREATE_TASK:
       return state
             .set('loading', true)

@@ -1,9 +1,12 @@
-/* To Be Improved */
+/**
+ * To Be Improved/Added 
+ *  Error handling etc
+ **/
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
-import { createTaskSaga } from './sagas';
-import api from '../../utils/network';
-import { taskActions } from './actions';
+import { createTaskSaga } from './create-task';
+import api from '../../../utils/network';
+import { taskActions } from '../actions';
 
 describe('Working with createTaskSaga', () => {
   it('should dispatch CREATE_TASK_FULFILLED action when adding new task is successful', () => {
