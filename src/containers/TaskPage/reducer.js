@@ -9,7 +9,6 @@ export const initialTaskState = fromJS({
 });
 
 function taskReducer(state = initialTaskState, {payload, type} ) {
-  console.info('reducer type', type);
   switch (type) {
     case taskActions.LOAD_TASK_FULFILLED:
       return state
@@ -21,16 +20,12 @@ function taskReducer(state = initialTaskState, {payload, type} ) {
             .set('loading', true)
             .set('error', false);
     case taskActions.CREATE_TASK_FULFILLED: {
-      console.log('payload', payload);
-      const newState = state.set('list', state.get('list').push(fromJS(payload.task)));
-      console.log('newState', newState);
-      return newState;
-      // return state
-      //   .set('list', state
-      //                 .get('list')
-      //                 .push(fromJS(payload.task)
-      //   )
-      // );
+      return state
+        .set('list', state
+                      .get('list')
+                      .push(fromJS(payload.task)
+        )
+      );
     }
   }
   return state;

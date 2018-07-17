@@ -16,7 +16,7 @@ const DemoPage = ({value, actions}) =>
 
 function mapStateToProps(state) {
   return {
-    value: state.get('demo').get('counter')
+    value: state.get('demoReducer').get('counter')
   }
 }  
 
