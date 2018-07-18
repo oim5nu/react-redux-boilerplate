@@ -12,11 +12,18 @@ import { withRouter } from 'react-router-dom';
 
 const TaskPage = ({createTask, tasks}) => {
   return(
-    <div>
-      TaskPage
-      <TaskForm handleSubmit={createTask}/>
-      <TaskFilter />
-      <TaskList tasks={tasks} />
+    <div className="flex flex-column">
+      <TaskForm 
+        className="f3 f3-ns w-80 center ph3-ns mv2" 
+        handleSubmit={createTask}
+      />
+      <TaskFilter 
+        className="f4 f4-ns w-80 center ph3-ns mv2"
+      />
+      <TaskList
+        className="f4 f4-ns w-80 center ph3-ns mv2" 
+        tasks={tasks} 
+      />
     </div>);
 };
 

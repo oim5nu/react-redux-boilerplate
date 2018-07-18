@@ -32,6 +32,9 @@ import '!file-loader?name=[name].[ext]!./resources/favicon.ico';
 // Import CSS reset and Global Styles
 import './styles/theme.scss';
 
+// Import Icons
+import 'material-icons/iconfont/material-icons.scss';
+
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
 const openSansObserver = new FontFaceObserver('Open Sans', {});
