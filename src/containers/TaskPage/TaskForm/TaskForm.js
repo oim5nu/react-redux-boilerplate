@@ -39,7 +39,7 @@ class TaskForm extends React.Component {
       <div className={className} >
         <form onSubmit={this.handleSubmit} noValidate>
           <input
-            className="f3 f3-ns w-100 w-80-ns"
+            className="w-100 w-80-ns"
             autoComplete="off"
             autoFocus
             maxLength="64"

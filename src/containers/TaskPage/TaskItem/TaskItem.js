@@ -10,7 +10,10 @@ class TaskItem extends Component {
     super(props);
   }
 
-  state = { editing: false };
+  state = {
+    task: this.props.task,
+    editing: false 
+  };
 
   edit = () => {
     this.setState( {editing: true});
@@ -25,16 +28,19 @@ class TaskItem extends Component {
   }
 
   remove = () => {
-    this.props.removeTask(this.props.task);
+    this.props.removeTask(this.state.task);
   }
 
   save = (event) => {
     if (this.state.editing) {
-      const { task } = this.props;
+      const { task } = this.state;
+
       const title = event.target.value.trim();
 
       if (title.length && title !== task.title ) {
-        this.props.updateTask(task, { title });
+        this.setState({ task: {...task, title} }, () => 
+          this.props.updateTask(task, { title })
+        );
       }
 
       this.stopEditing();
@@ -46,14 +52,19 @@ class TaskItem extends Component {
   }
 
   toggleStatus = () => {
-    const { task } = this.props;
-    this.props.updateTask(task, { completed: !task.completed});
+    const { task } = this.state;
+    let completed = !task.completed;
+    this.setState({task: {...this.state.task, completed: completed}}, () => 
+      this.props.updateTask(task, { completed }) 
+    );
   }
 
   renderTitle = (task) => {
     return (
-      <div className="mv2 w-100" tabIndex="0">
-        {task.get('title')}
+      <div 
+        className={classNames("mv2", "w-100", {"strike": task.completed})} 
+        tabIndex="0">
+        {task.title}
       </div>
     );
   }
@@ -64,7 +75,7 @@ class TaskItem extends Component {
         className="mv2 w-100" 
         autoComplete="off"
         autoFocus
-        defaultValue={task.get('title')}
+        defaultValue={task.title}
         maxLength="64"
         onKeyUp={this.handleKeyUp}
         type="text"
@@ -73,11 +84,9 @@ class TaskItem extends Component {
   }
 
   render() {
-    const { editing } = this.state;
-    const { task } = this.props;
-    console.log('task.toJS()', task.toJS());
-    console.log('editing', editing);
-    
+    const { editing, task } = this.state;
+
+    //console.log('task in render', task);
     return (
       <div className="cf ph2-ns" tabIndex="0">
         <div className="fl w-10 w-10-ns pa2">
@@ -115,7 +124,6 @@ class TaskItem extends Component {
         </div>
       </div>
     );
-
   }
 }
 

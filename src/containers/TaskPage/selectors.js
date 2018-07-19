@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
 
-export const selectTasks = state => state.get('taskReducer');
+export const selectTasks = state => state.get('taskReducer').toJS();
 
-export const selectTaskFilter = state => selectTasks(state).get('filter');
+export const selectTaskFilter = state => selectTasks(state)['filter'];
 
-export const selectTaskList = state => selectTasks(state).get('list');
+export const selectTaskList = state => selectTasks(state)['list'];
 
 //=========================================
 // MEMOIZED SELECTORS

@@ -1,14 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'immutable';
+//import { List } from 'immutable';
 import TaskItem from '../TaskItem';
 
-const TaskList = ({className, tasks}) => {
+const TaskList = ({className, tasks, updateTask, removeTask}) => {
   return (
     <div className={className}>
-        { tasks ? tasks.map(task => {
+        { tasks ? tasks.map((task, index) => {
           return (
-            <TaskItem task={task} />
+            <TaskItem 
+              key={index}
+              task={task} 
+              updateTask={updateTask}
+              removeTask={removeTask}
+            />
           ); }) : <div>Nothing to display</div>
         }
     </div>
@@ -16,8 +21,10 @@ const TaskList = ({className, tasks}) => {
 };
 
 TaskList.propTypes = {
-  tasks: PropTypes.instanceOf(List),
+  tasks: PropTypes.array.isRequired,
   className: PropTypes.string,
+  updateTask: PropTypes.func.isRequired,
+  removeTask: PropTypes.func.isRequired,
 }
 
 export default TaskList;

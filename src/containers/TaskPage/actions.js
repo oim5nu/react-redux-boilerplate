@@ -5,6 +5,12 @@ export const taskActions = {
   CREATE_TASK: 'TaskPage/CREATE_TASK',
   CREATE_TASK_FAILED: 'TaskPage/CREATE_TASK_FAILED',
   CREATE_TASK_FULFILLED: 'TaskPage/CREATE_TASK_FULFILLED',
+  UPDATE_TASK: 'TaskPage/UPDATE_TASK',
+  UPDATE_TASK_FAILED: 'TaskPage/UPDATE_TASK_FAILED',
+  UPDATE_TASK_FULFILLED: 'TaskPage/UPDATE_TASK_FULFILLED',
+  REMOVE_TASK: 'TaskPage/REMOVE_TASK',
+  REMOVE_TASK_FAILED: 'TaskPage/REMOVE_TASK_FAILED',
+  REMOVE_TASK_FULFILLED: 'TaskPage/REMOVE_TASK_FULFILLED',
 
   createTask: title => ({
     type: taskActions.CREATE_TASK,
@@ -34,5 +40,34 @@ export const taskActions = {
   loadTasksFulfilled: tasks => ({
     type: taskActions.LOAD_TASKS_FULFILLED,
     payload: {tasks}
-  })
+  }),
+
+  updateTask: (task, changes) => ({
+    type: taskActions.UPDATE_TASK,
+    payload: {task, changes}
+  }),
+
+  updateTaskFulfilled: task => ({
+    type: taskActions.UPDATE_TASK_FULFILLED,
+    payload: {task}
+  }),
+
+  updateTaskFailed: error => ({
+    type: taskActions.UPDATE_TASK_FAILED,
+    payload: {error}
+  }),
+  removeTask: (task) => ({
+    type: taskActions.REMOVE_TASK,
+    payload: {task}
+  }),
+
+  removeTaskFulfilled: task => ({
+    type: taskActions.REMOVE_TASK_FULFILLED,
+    payload: {task}
+  }),
+
+  removeTaskFailed: error => ({
+    type: taskActions.REMOVE_TASK_FAILED,
+    payload: {error}
+  }),
 }

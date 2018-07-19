@@ -21,6 +21,10 @@ export function* createTaskSaga(action) {
     yield put({ type: taskActions.CREATE_TASK_FULFILLED, payload: { task: { id, title } } });
   } catch(error) {
     yield put({ type: taskActions.CREATE_TASK_FAILED , payload: { error } })
+  } finally {
+    yield put({
+      type: taskActions.LOAD_TASKS
+    });    
   }
 }
 

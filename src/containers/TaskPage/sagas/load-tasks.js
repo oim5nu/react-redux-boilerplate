@@ -6,14 +6,14 @@ import { taskActions } from '../actions';
 //------------------------------------------------------------
 
 function *loadTasksSaga(action) {
-  console.log('loadTasksSaga action', action);
+  //console.log('loadTasksSaga action', action);
   try {
     const { data } = yield call(
       api.get,
       '/api/tasks'
     );
 
-    console.info('data', data);
+    //console.info('data', data);
     yield put({ type: taskActions.LOAD_TASKS_FULFILLED, payload: { tasks: data }});
   } catch (error) {
     yield put({ type: taskActions.LOAD_TASKS_FAILED, payload: { error }})
