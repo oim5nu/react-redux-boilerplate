@@ -10,6 +10,9 @@ import { compose, bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 
 const TaskPage = ({createTask, removeTask, updateTask, tasks}) => {
+  const params = new URLSearchParams(location.search);
+  const filter = params.get('filter');
+
   return(
     <div className="flex flex-column">
       <TaskForm 
@@ -24,6 +27,7 @@ const TaskPage = ({createTask, removeTask, updateTask, tasks}) => {
         tasks={tasks} 
         removeTask={removeTask}
         updateTask={updateTask}
+        filter={filter}
       />
     </div>);
 };
@@ -33,6 +37,7 @@ TaskPage.propTypes = {
   createTask: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
   removeTask: PropTypes.func.isRequired,
+  filterTasks: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired
 };
 
@@ -49,6 +54,7 @@ const mapDispatchToProps = {
   createTask: taskActions.createTask,
   updateTask: taskActions.updateTask,
   removeTask: taskActions.removeTask,
+  filterTasks: taskActions.filterTasks,
 };
 */
 
@@ -57,6 +63,7 @@ const mapDispatchToProps = (dispatch) => {
     createTask: taskActions.createTask,
     updateTask: taskActions.updateTask,
     removeTask: taskActions.removeTask, 
+    filterTasks: taskActions.filterTasks,
   }, dispatch);
 };
 

@@ -2,9 +2,9 @@ import { createSelector } from 'reselect';
 
 export const selectTasks = state => state.get('taskReducer').toJS();
 
-export const selectTaskFilter = state => selectTasks(state)['filter'];
+export const selectTaskFilter = state => selectTasks(state).filter;
 
-export const selectTaskList = state => selectTasks(state)['list'];
+export const selectTaskList = state => selectTasks(state).list;
 
 //=========================================
 // MEMOIZED SELECTORS
@@ -15,9 +15,9 @@ export const getVisibleTasks = createSelector(
   selectTaskList,
   (filter, taskList) => {
     switch (filter) {
-      case 'active': 
+      case 'active':
         return taskList.filter(task => !task.completed);
-      case 'completed':
+      case 'completed': 
         return taskList.filter(task => task.completed);
       default:
         return taskList;

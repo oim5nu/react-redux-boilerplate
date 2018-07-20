@@ -11,12 +11,11 @@ class TaskItem extends Component {
   }
 
   state = {
-    task: this.props.task,
     editing: false 
   };
 
   edit = () => {
-    this.setState( {editing: true});
+    this.setState( {editing: true} );
   }
 
   handleKeyUp = (event) => {
@@ -33,14 +32,12 @@ class TaskItem extends Component {
 
   save = (event) => {
     if (this.state.editing) {
-      const { task } = this.state;
+      const { task } = this.props;
 
       const title = event.target.value.trim();
 
       if (title.length && title !== task.title ) {
-        this.setState({ task: {...task, title} }, () => 
-          this.props.updateTask(task, { title })
-        );
+          this.props.updateTask(task, { title });
       }
 
       this.stopEditing();
@@ -52,11 +49,9 @@ class TaskItem extends Component {
   }
 
   toggleStatus = () => {
-    const { task } = this.state;
+    const { task } = this.props;
     let completed = !task.completed;
-    this.setState({task: {...this.state.task, completed: completed}}, () => 
-      this.props.updateTask(task, { completed }) 
-    );
+    this.props.updateTask(task, { completed }); 
   }
 
   renderTitle = (task) => {
@@ -84,9 +79,10 @@ class TaskItem extends Component {
   }
 
   render() {
-    const { editing, task } = this.state;
-
-    //console.log('task in render', task);
+    const { task } = this.props;
+    const { editing } = this.state;
+    //console.log('this.props.task', this.props.task);
+    //console.log(`this.state.task with id${task.id} in render`, task);
     return (
       <div className="cf ph2-ns" tabIndex="0">
         <div className="fl w-10 w-10-ns pa2">

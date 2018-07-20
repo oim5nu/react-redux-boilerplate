@@ -62,6 +62,9 @@ function taskReducer(state = initialTaskState, {payload, type} ) {
       return state
         .set('error', fromJS(payload.error))
         .set('loading', false);
+    case taskActions.FILTER_TASKS:
+      return state
+        .set('filter', payload.filterType || '');
   }
   return state;
 }

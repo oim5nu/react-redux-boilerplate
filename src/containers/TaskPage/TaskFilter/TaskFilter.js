@@ -1,16 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import './style.scss';
 
-const TaskFilter = ({className}) => (
-  <div className={className} >
-    <span>View All /</span>
-    <span>Active /  </span>
-    <span>Completed</span>
-  </div>
-);
+const TaskFilter = ({filter, className}) => {
+  const linkClasses = 'link dim gray f5 f4-ns dib mr3';
+  return (
+    <nav className={className} >
+    <span >
+      <NavLink 
+        className={linkClasses}      
+        isActive={() => !filter} 
+        to={"/todo"}
+      >View All
+      </NavLink>
+    </span>
+    <span className="filter-delimiter" >
+      <NavLink 
+        className={linkClasses}
+        isActive={()=> filter === 'active'} 
+        to={{pathname: "/todo", search: "?filter=active"}}
+      >Active
+      </NavLink>
+    </span>
+    <span className="filter-delimiter" >
+      <NavLink 
+        className={linkClasses}
+        isActive={()=> filter === 'completed'} 
+        to={{pathname: "/todo", search: "?filter=completed"}}
+      >Completed
+      </NavLink>
+    </span>
+  </nav>
+)};
 
 TaskFilter.propTypes = {
+  filter: PropTypes.string,
   className: PropTypes.string
 };
 

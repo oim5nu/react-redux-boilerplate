@@ -11,6 +11,7 @@ export const taskActions = {
   REMOVE_TASK: 'TaskPage/REMOVE_TASK',
   REMOVE_TASK_FAILED: 'TaskPage/REMOVE_TASK_FAILED',
   REMOVE_TASK_FULFILLED: 'TaskPage/REMOVE_TASK_FULFILLED',
+  FILTER_TASKS: 'TaskPage/FILTER_TASKS',
 
   createTask: title => ({
     type: taskActions.CREATE_TASK,
@@ -69,5 +70,10 @@ export const taskActions = {
   removeTaskFailed: error => ({
     type: taskActions.REMOVE_TASK_FAILED,
     payload: {error}
+  }),
+
+  filterTasks: filterType => ({
+    type: taskActions.FILTER_TASKS,
+    payload: {filterType}
   }),
 }

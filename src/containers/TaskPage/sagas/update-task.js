@@ -17,11 +17,16 @@ function* updateTaskSaga(action) {
       type: taskActions.UPDATE_TASK_FULFILLED, 
       payload: { id, title, completed }
     });
-    // yield put({
-    //   type: taskActions.LOAD_TASKS
-    // });
+    yield put({
+      type: taskActions.LOAD_TASKS
+    });
+
   } catch(error) {
     yield put({type: taskActions.UPDATE_TASK_FAILED, payload: { error }});
+  } finally {
+    yield put({
+      type: taskActions.LOAD_TASKS
+    });
   }
 }
 
